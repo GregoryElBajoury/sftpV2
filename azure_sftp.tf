@@ -35,3 +35,23 @@ resource "azurerm_sftp_server" "example" {
     type = var.identity_type
   }
 }
+
+resource "azurerm_key_vault" "example" {
+  name                        = var.key_vault_name
+  location                    = var.location
+  resource_group_name         = var.resource_group_name
+  tenant_id                   = var.tenant_id
+  sku_name                    = var.key_vault_sku_name
+
+  soft_delete_retention_days  = var.soft_delete_retention_days
+  purge_protection_enabled    = var.purge_protection_enabled
+
+  network_acls {
+    default_action             = var.network_acls_default_action
+    bypass                     = var.network_acls_bypass
+    ip_rules                   = var.network_acls_ip_rules
+    virtual_network_subnet_ids = var.network_acls_virtual_network_subnet_ids
+  }
+}
+
+
